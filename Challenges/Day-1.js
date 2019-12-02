@@ -23,6 +23,25 @@ The Fuel Counter-Upper needs to know the total fuel requirement. To find it, ind
 
 What is the sum of the fuel requirements for all of the modules on your spacecraft?
 
+
+*/
+//Day 1 Part 1
+function dayOnePartOne(arr) {
+  //Initialize sum
+  let sum = 0;
+  //Iterate through every element in the array
+  for (let i = 0; i < arr.length; i++) {
+    let num = arr[i];
+    //calculate fuel needed from initial module mass
+    let fuel = Math.floor(num / 3) - 2;
+    sum += fuel;
+  }
+  return sum;
+}
+//One line solution
+//o=a=>a.reduce((s,m)=>s+((m/3)|0)-2,0)
+
+/*
 --- Part Two ---
 
 During the second Go / No Go poll, the Elf in charge of the Rocket Equation Double-Checker stops the launch sequence. Apparently, you forgot to include additional fuel for the fuel you just added.
@@ -38,16 +57,20 @@ So, for each module mass, calculate its fuel and add it to the total. Then, trea
 What is the sum of the fuel requirements for all of the modules on your spacecraft when also taking into account the mass of the added fuel? (Calculate the fuel requirements for each module separately, then add them all up at the end.)
 
 */
-
-//Day 1 Both prompts can be solved with the same function
-function dayOne(arr) {
+//Day 1 Part 2
+function dayOnePartTwo(arr) {
+  //Initialize sum
   let sum = 0;
+  //Iterate through every element in the array
   for (let i = 0; i < arr.length; i++) {
     let num = arr[i];
-
+    //calculate fuel needed from initial module mass
     let fuel = Math.floor(num / 3) - 2;
+    //While fuel is greater than 0
     while (fuel > 0) {
+      //add fuel cost to sum
       sum += fuel;
+      //calculate new fuel cost for the additional fuel you just added
       fuel = Math.floor(fuel / 3) - 2;
     }
   }
