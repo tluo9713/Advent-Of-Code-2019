@@ -64,22 +64,18 @@ function day2Part1(arr, noun = 12, verb = 2) {
   while (arr[start] !== '99') {
     //Grab relevant codes
     const opCode = arr[start];
-    const first = arr[start + 1];
-    const second = arr[start + 2];
     const third = arr[start + 3];
-    const firstNum = Number(arr[first]);
-    const secondNum = Number(arr[second]);
+    const firstNum = Number(arr[arr[start + 1]]);
+    const secondNum = Number(arr[arr[start + 2]]);
+    let result;
     //If opCode is 1, we add the first position and second position number
     //and assign it to position 3
-    if (opCode === '1') {
-      const sum = firstNum + secondNum;
-      arr[third] = sum;
-      //If opCode is 2, we multiply the first position and second position
-      //number and assign it to position 3
-    } else if (opCode === '2') {
-      const product = firstNum * secondNum;
-      arr[third] = product;
-    }
+    if (opCode === '1') result = firstNum + secondNum;
+    //If opCode is 2, we multiply the first position and second position
+    //number and assign it to position 3
+    else result = firstNum * secondNum;
+    arr[third] = result;
+
     //reassign start so we check for the next opCode
     start += 4;
   }
@@ -117,6 +113,7 @@ Find the input noun and verb that cause the program to produce the output 196907
 function day2Part2(arr) {
   for (let i = 0; i < 100; i++) {
     for (let j = 0; j < 100; j++) {
+      //Try every noun and verb combination and return the proper answer
       const output = day2Part1([...arr], i, j);
       if (output === 19690720) return 100 * i + j;
     }
