@@ -56,27 +56,28 @@ Once you have a working computer, the first step is to restore the gravity assis
 
 */
 //Day 2 Part 1
-function day2Part1(arr) {
+function day2Part1(arr, noun = 12, verb = 2) {
   let start = 0;
   //Initialize Values before running function as prompt requires
-  arr[1] = 12;
-  arr[2] = 2;
+  arr[1] = noun;
+  arr[2] = verb;
   while (arr[start] !== '99') {
     //Grab relevant codes
     const opCode = arr[start];
     const first = arr[start + 1];
     const second = arr[start + 2];
     const third = arr[start + 3];
-
+    const firstNum = Number(arr[first]);
+    const secondNum = Number(arr[second]);
     //If opCode is 1, we add the first position and second position number
     //and assign it to position 3
     if (opCode === '1') {
-      const sum = Number(arr[first]) + Number(arr[second]);
+      const sum = firstNum + secondNum;
       arr[third] = sum;
       //If opCode is 2, we multiply the first position and second position
       //number and assign it to position 3
     } else if (opCode === '2') {
-      const product = Number(arr[first]) * Number(arr[second]);
+      const product = firstNum * secondNum;
       arr[third] = product;
     }
     //reassign start so we check for the next opCode
@@ -113,6 +114,14 @@ Find the input noun and verb that cause the program to produce the output 196907
 */
 //Day 2 Part 2
 
+function day2Part2(arr) {
+  for (let i = 0; i < 100; i++) {
+    for (let j = 0; j < 100; j++) {
+      const output = day2Part1([...arr], i, j);
+      if (output === 19690720) return 100 * i + j;
+    }
+  }
+}
 //One line solution
 //TBD
 
