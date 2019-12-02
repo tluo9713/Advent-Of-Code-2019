@@ -39,9 +39,7 @@ What is the sum of the fuel requirements for all of the modules on your spacecra
 
 */
 
-let inputArr = test.split('\n');
-
-//Day 1
+//Day 1 Both prompts can be solved with the same function
 function dayOne(arr) {
   let sum = 0;
   for (let i = 0; i < arr.length; i++) {
@@ -52,13 +50,14 @@ function dayOne(arr) {
       sum += fuel;
       fuel = Math.floor(fuel / 3) - 2;
     }
-    //f=m=>(t=(m/3|0)-2,m>6?t+f(t):0)
-    //sum += f(num)
   }
   return sum;
 }
+//One line solution
 //o=a=>a.reduce((s,m)=>s+((t=((m/3)|0)-2),m>6?t+f(t):0,0)
 
+//currently we're grabbing the data and splitting it at \n to create an array
+//JS will convert each element from a string into a num when evaluating.
 let input = `141496
 50729
 52916
@@ -159,3 +158,5 @@ let input = `141496
 124595
 89042
 90715`;
+
+let inputArr = test.split('\n');
